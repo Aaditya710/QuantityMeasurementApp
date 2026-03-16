@@ -19,7 +19,6 @@ public class QuantityMeasurementApp {
 
 		return quantity1.add(quantity2);
 	}
-	
 
 	// generic addition (explicit target unit)
 	public static <U extends IMeasurable> Quantity<U> demonstrateAddition(Quantity<U> quantity1, Quantity<U> quantity2,
