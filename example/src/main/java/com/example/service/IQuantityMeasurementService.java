@@ -1,13 +1,16 @@
 package com.example.service;
-import com.example.dto.QuantityDTO;
+
+import com.example.entity.QuantityDTO;
 
 public interface IQuantityMeasurementService {
 
-    QuantityDTO add(QuantityDTO q1, QuantityDTO q2);
+    boolean compare(QuantityDTO first, QuantityDTO second);
 
-    QuantityDTO subtract(QuantityDTO q1, QuantityDTO q2);
+    QuantityDTO convert(QuantityDTO quantity, String targetUnit);
 
-    double divide(QuantityDTO q1, QuantityDTO q2);
+    QuantityDTO add(QuantityDTO first, QuantityDTO second);
 
-    boolean compare(QuantityDTO q1, QuantityDTO q2);
+    QuantityDTO subtract(QuantityDTO first, QuantityDTO second);
+
+    double divide(QuantityDTO first, QuantityDTO second);
 }

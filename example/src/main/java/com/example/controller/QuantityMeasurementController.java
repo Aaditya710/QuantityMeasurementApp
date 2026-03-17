@@ -1,32 +1,43 @@
 package com.example.controller;
-import com.example.dto.QuantityDTO;
+
+import com.example.entity.QuantityDTO;
+import com.example.exception.QuantityMeasurementException;
 import com.example.service.IQuantityMeasurementService;
 
 public class QuantityMeasurementController {
-
     private IQuantityMeasurementService service;
 
     public QuantityMeasurementController(IQuantityMeasurementService service) {
         this.service = service;
     }
 
-    public void performAddition() {
-
-        QuantityDTO q1 = new QuantityDTO(10, "meter");
-        QuantityDTO q2 = new QuantityDTO(5, "meter");
-
-        QuantityDTO result = service.add(q1, q2);
-
-        System.out.println("Addition Result: " + result.getValue());
+    public boolean performCompare(QuantityDTO q1, QuantityDTO q2) {
+    	boolean result = service.compare(q1, q2);
+        System.out.println("Comparison Result: " + (result ? "Equal" : "Not Equal"));
+        return result;
     }
 
-    public void performComparison() {
+    public QuantityDTO performConvert(QuantityDTO quantity, String targetUnit) {
+    	QuantityDTO result = service.convert(quantity, targetUnit);
+        System.out.println("Converted Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
+    }
 
-        QuantityDTO q1 = new QuantityDTO(10, "meter");
-        QuantityDTO q2 = new QuantityDTO(10, "meter");
+    public QuantityDTO performAdd(QuantityDTO q1, QuantityDTO q2) {
+    	QuantityDTO result = service.add(q1, q2);
+        System.out.println("Addition Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
+    }
 
-        boolean equal = service.compare(q1, q2);
+    public QuantityDTO performSubtract(QuantityDTO q1, QuantityDTO q2) {
+    	QuantityDTO result = service.subtract(q1, q2);
+        System.out.println("Subtraction Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
+    }
 
-        System.out.println("Are Equal: " + equal);
+    public double performDivide(QuantityDTO q1, QuantityDTO q2) {
+    	double result = service.divide(q1, q2);
+        System.out.println("Division Result: " + result);
+        return result;
     }
 }
